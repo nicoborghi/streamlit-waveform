@@ -10,6 +10,10 @@ from gwpy.timeseries import TimeSeries
 
 np.random.seed(38)
 
+from matplotlib import rc
+rc('text', usetex=False) 
+
+
 def make_audio_file(bp_data, t0=None):
     # -- window data for gentle on/off
     window = signal.windows.tukey(len(bp_data), alpha=1.0/100)
@@ -64,7 +68,7 @@ m1 = 10.
 m2 = 9.
 dL = 50.
 phase=0.9
-  
+
 
 
 
