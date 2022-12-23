@@ -1,7 +1,7 @@
 streamlit
 numpy
 # git+https://github.com/CosmoStatGW/WF4Py#egg=WF4Py
-# gwpy
+gwpy
 pycbc
 matplotlib
 scipy
