@@ -1,10 +1,29 @@
+import io
 import streamlit as st
 import matplotlib.pyplot as plt
 from pycbc.waveform import get_td_waveform
 from pycbc.detector import Detector
 import numpy as np
+from scipy import signal
+from scipy.io import wavfile
+from gwpy.timeseries import TimeSeries
 
 np.random.seed(38)
+
+def make_audio_file(bp_data, t0=None):
+    # -- window data for gentle on/off
+    window = signal.windows.tukey(len(bp_data), alpha=1.0/100)
+    win_data = bp_data*window
+
+    # -- Normalize for 16 bit audio
+    win_data = np.int16(win_data/np.max(np.abs(win_data)) * 32767 * 0.9)
+
+    fs=1/win_data.dt.value
+    virtualfile = io.BytesIO()    
+    wavfile.write(virtualfile, int(fs), win_data)
+    
+    return virtualfile
+
 
 st.set_page_config(page_title="Waveform analysis", page_icon=":scroll:", layout="centered")
 st.title("Waveform analysis")
@@ -134,7 +153,12 @@ plt.xlim(*xlim)
 st.pyplot(plt)
 
 
-
+ts = TimeSeries(y, dt=1.0/4096).taper() 
+tm = TimeSeries(signal_l1, dt=1.0/4096).taper() 
+st.write("Sonification of data")
+st.audio(make_audio_file(ts), format='audio/wav')
+st.write("Sonification of model")
+st.audio(make_audio_file(tm), format='audio/wav')
 
 table = [[r"$m_1$", "Mass of the primry object"]]
 

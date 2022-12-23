@@ -4,6 +4,7 @@ numpy
 # gwpy
 pycbc
 matplotlib
+scipy
 # pesummary
 # seaborn
 # healpy
