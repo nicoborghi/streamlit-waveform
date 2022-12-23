@@ -60,6 +60,10 @@ if chosen=="GW170817":
     xlim = (None, 0)
     xlim = [-1.,0.05]
 
+m1 = 10.
+m2 = 9.
+dL = 50.
+phase=0.9
   
 
 
@@ -67,25 +71,25 @@ if chosen=="GW170817":
 col1, col2 = st.sidebar.columns(2)
 
 with col1:
-    m1 = col1.slider('$m_1~\mathrm{(M_\odot)}$', 1., 100.0, 10.0, step=0.01)
+    m1 = col1.slider('$m_1~\mathrm{(M_\odot)}$', 1., 100.0, m1, step=0.01)
 with col2:
     m1 = col2.number_input(" ", value=m1)
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    m2 = col1.slider('$m_2~\mathrm{(M_\odot)}$', 1., 100.0, 10.0, step=0.01)
+    m2 = col1.slider('$m_2~\mathrm{(M_\odot)}$', 1., 100.0, m2, step=0.01)
 with col2:
     m2 = col2.number_input("  ", value=m2)
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    dL = col1.slider('$d_L~\mathrm{(Mpc)}$', 0.01, 500., 50., step=1.)
+    dL = col1.slider('$d_L~\mathrm{(Mpc)}$', 0.01, 500., dL, step=1.)
 with col2:
     dL = col2.number_input("   ", value=dL)
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    phase = col1.slider('$\phi~\mathrm{(deg)}$', 0., 3.14, 0.9, step=0.1)
+    phase = col1.slider('$\phi~\mathrm{(deg)}$', 0., 3.14, phase, step=0.1)
 with col2:
     phase = col2.number_input("    ", value=phase)
 
